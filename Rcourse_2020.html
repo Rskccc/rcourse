@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Statistics and Data Analysis Using R</title>
+<meta name="author" content="Department of Oncology, JHU SOM"/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/reveal.js/3.0.0/css/reveal.css"/>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/reveal.js/3.0.0/css/theme/serif.css" id="theme"/>
+
+<link rel="stylesheet" href="./presentation.css"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/reveal.js/3.0.0/lib/css/zenburn.css"/>
+
+<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+<script>
+    if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'https://cdn.jsdelivr.net/reveal.js/3.0.0/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }
+</script>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide" data-background="./images/Rlogo2.png">
+<h1 class="title">Statistics and Data Analysis Using R</h1><h2 class="author">Department of Oncology, JHU SOM</h2><h2 class="date">Fall, 2020</h2><p class="date">Created: 2020-11-10 Tue 21:25</p>
+</section>
+<section>
+<section id="slide-1" data-background="" data-background-repeat="t">
+<h2 id="1"><span class="section-number-2">1</span> Introduction</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+</section>
+</section>
+<section>
+<section id="slide-1-1" data-background="" data-background-repeat="t">
+<h3 id="1-1"><span class="section-number-3">1.1</span> Instructors</h3>
+<ul>
+<li>Leslie Cope, PhD (cope@jhu.edu)</li>
+<li>Chenguang Wang, PhD (<i>cwang68@jhmi.edu</i>)</li>
+<li>Rossin Erbe (rerbe1@jhmi.edu)</li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-1-2" data-background="" data-background-repeat="t">
+<h3 id="1-2"><span class="section-number-3">1.2</span> Class</h3>
+<ul>
+<li>Tell us
+<ol>
+<li>Who you are</li>
+<li>Why you are taking this course</li>
+
+</ol></li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-1-3" data-background="" data-background-repeat="t">
+<h3 id="1-3"><span class="section-number-3">1.3</span> Syllabus</h3>
+<ul>
+<li>History</li>
+<li>Course content</li>
+<li>Videos, lectures, exercises</li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-1-4" data-background="" data-background-repeat="t">
+<h3 id="1-4"><span class="section-number-3">1.4</span> Final Project</h3>
+<ul>
+<li><a href="https://rskccc.github.io/rbook/">https://rskccc.github.io/rbook/</a></li>
+<li>Milestones
+<ul>
+<li>Nov 20: Formulate groups, decide on projects</li>
+<li>Dec 9, 11: Meet with the instructors, preview the project</li>
+
+</ul></li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-1-5" data-background="" data-background-repeat="t">
+<h3 id="1-5"><span class="section-number-3">1.5</span> Course evaluation</h3>
+<ul>
+<li>Graded on a Pass/Fail basis</li>
+<li>Depends on attendance at the majority of classes and final project</li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-2" data-background="./images/Rlogo2.png" data-background-repeat="t">
+<h2 id="2"><span class="section-number-2">2</span> What is <code>R</code>?</h2>
+</section>
+</section>
+<section>
+<section id="slide-2-1" data-background="" data-background-repeat="t">
+<h3 id="2-1"><span class="section-number-3">2.1</span> History of <i>R</i></h3>
+<ul>
+<li><code>R</code> is an outgrowth of the <code>S</code> language and environment</li>
+<li><code>S</code> is a high level language and an internal statistical environment for
+data analysis and graphics</li>
+<li><p>
+<code>S</code> was developed for Bell Labs in 1976 under the leadership of <a href="https://statistics.stanford.edu/people/john-chambers">John Chambers</a>
+</p>
+<blockquote>
+<p>
+to turn ideas into software quickly and faithfully
+</p>
+</blockquote></li>
+
+</ul>
+
+</section>
+<section data-background="" data-background-repeat="t">
+<ul>
+<li><code>S-PLUS</code> and <code>R</code> are two <code>S</code> dialects</li>
+<li><code>S-PLUS</code> is a <i>commercial</i> implementation of the <code>S</code></li>
+<li><code>R</code> is also known as <i>GNU S</i></li>
+<li>Most <code>S</code> code will run without modification in <code>R</code></li>
+<li><code>S-Plus</code> offers a sophisticated graphical user interface, <code>R</code> does not</li>
+<li>Standard data files for <code>S</code> and <code>R</code> are not compatible</li>
+<li>Graphical output differs</li>
+
+</ul>
+
+</section>
+<section data-background="" data-background-repeat="t">
+<ul>
+<li><code>R</code> started in the early 1990’s as a project by <a href="https://en.wikipedia.org/wiki/Ross_Ihaka">Ross Ihaka</a> and <a href="https://en.wikipedia.org/wiki/Robert_Gentleman_(statistician)">Robert
+Gentleman</a> at the University of Auckland, New Zealand, intended to provide a
+statistical environment in their teaching lab</li>
+<li><code>R</code> is a language and environment for statistical computing and graphics</li>
+<li><code>R</code> provides an Open Source route to participation in research in statistical
+methodology</li>
+<li>Most user-visible functions are written in <code>R</code> itself</li>
+<li>It is possible to develop <code>R</code> procedures written in other languages (C,
+C++, or FORTRAN)</li>
+<li>System commands can be called from within <code>R</code></li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-2-2" data-background="" data-background-repeat="t">
+<h3 id="2-2"><span class="section-number-3">2.2</span> Why <i>R</i>?</h3>
+<ul>
+<li><code>R</code> is a free and powerful tool for statistical analyses</li>
+<li><code>R</code> compiles and runs on a wide variety of UNIX platforms and similar
+systems (including FreeBSD and Linux), Windows and MacOS</li>
+<li>Open-source code, well curated and error checked through a wide and active
+user community</li>
+<li><code>R</code> provides a wide variety of statistical techniques including linear and
+nonlinear modelling, classical statistical tests, time-series analysis,
+genomics, and many more</li>
+<li><code>R</code> is highly extensible</li>
+<li><code>R</code> produces well-designed publication-quality plots, including mathematical
+symbols and formulae where needed</li>
+
+</ul>
+</section>
+<section id="slide-2-2-1" data-background="" data-background-repeat="t">
+<h4 id="2-2-1"><span class="section-number-4">2.2.1</span> R environment</h4>
+<ul>
+<li>data handling and storage</li>
+<li>computations on different types</li>
+<li>large collections of statistical analysis tools</li>
+<li>graphical support</li>
+<li>programming language</li>
+
+</ul>
+</section>
+<section id="slide-2-2-2" data-background="" data-background-repeat="t">
+<h4 id="2-2-2"><span class="section-number-4">2.2.2</span> Bioconductor</h4>
+<ul>
+<li>A particular R strength is genomics research</li>
+<li>Bioconductor
+<ul>
+<li>A suite of <code>R</code> packages dedicated to genomic data analysis,
+visualization and management</li>
+<li>Facilitates biological metadata integration (e.g.,Gene Ontology, PubMed)
+in the analysis of experimental data</li>
+<li>New methods are quickly implemented in <code>R</code> and made available via
+Bioconductor</li>
+<li>The undeclared <i>standard</i> in literature</li>
+<li><a href="https://www.bioconductor.org/">https://www.bioconductor.org/</a></li>
+
+</ul></li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-2-3" data-background="" data-background-repeat="t">
+<h3 id="2-3"><span class="section-number-3">2.3</span> Why not <i>R</i>?</h3>
+<ul>
+<li><code>R</code> is accused of being slow, memory-hungry, and unable to handle large
+data sets</li>
+<li><code>R</code> has no GUI and no commercial service
+<ul>
+<li>Error messages can be cryptic</li>
+<li>Documentation is controlled by the code developer and may be difficult to
+follow</li>
+
+</ul></li>
+<li>Regulatory guidelines (e.g. 21 CFR 11) require tedious effort to validate
+and verify things. A large proportion of <code>R</code> packages and applications are
+lack of such documentation</li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-2-4" data-background="" data-background-repeat="t">
+<h3 id="2-4"><span class="section-number-3">2.4</span> Resources</h3>
+<ul>
+<li><i>CRAN</i>: The Comprehensive R Archive Network
+<ul>
+<li><a href="https://cran.r-project.org/">https://cran.r-project.org/</a></li>
+<li>A network of ftp and web servers that store identical,
+up-to-date, versions of code and documentation for R</li>
+<li>Mirror list on <a href="https://cran.r-project.org/mirrors.html">https://cran.r-project.org/mirrors.html</a></li>
+
+</ul></li>
+<li><i>GOOGLE</i></li>
+<li><i>RSeek</i>
+<ul>
+<li>An R-specific, Google powered search engine</li>
+<li><a href="http://www.rseek.org/">http://www.rseek.org/</a></li>
+
+</ul></li>
+
+</ul>
+
+</section>
+<section data-background="" data-background-repeat="t">
+
+<ul>
+<li>Active community mailing lists
+<ul>
+<li><a href="http://www.r-project.org/mail.html">http://www.r-project.org/mail.html</a>
+<ul>
+<li>R-announce: A moderated list for major announcements about the
+development of R and the availability of new code.</li>
+<li>R-packages: A moderated list for announcements on the availability of
+new or enhanced contributed packages.</li>
+<li><i>R-help</i>: The main R mailing list, for discussion about problems and
+solutions using R, announcements (not covered by ‘R-announce’ and
+‘R-packages’) about the development of R and the availability of new
+code</li>
+<li>R-devel: This list is for questions and discussion about code development in R.</li>
+<li>R-package-devel: A list which which provides a forum for learning about
+the R package development process.</li>
+
+</ul></li>
+<li>Follow the <a href="https://www.r-project.org/posting-guide.html">posting guidelines</a></li>
+<li>Do not be discouraged!!! A helpful response will usually come along</li>
+
+</ul></li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-3" data-background="./images/Rlogo2.png" data-background-repeat="t">
+<h2 id="3"><span class="section-number-2">3</span> Getting Started with R</h2>
+</section>
+</section>
+<section>
+<section id="slide-3-1" data-background="" data-background-repeat="t">
+<h3 id="3-1"><span class="section-number-3">3.1</span> Installation</h3>
+<ul>
+<li>R</li>
+<li>RStudio</li>
+
+</ul>
+</section>
+<section id="slide-3-1-1" data-background="" data-background-repeat="t">
+<h4 id="3-1-1"><span class="section-number-4">3.1.1</span> R</h4>
+<ul>
+<li><a href="https://cran.r-project.org/">https://cran.r-project.org/</a></li>
+<li>Subdirectories
+<ul>
+<li><i>base</i>: base distribution that provides the base package which is
+required to run R and contains the most fundamental functions</li>
+<li><i>contrib</i>: Contributed CRAN packages</li>
+<li><i>Rtools</i>: Tools to build <code>R</code> and <code>R</code> packages</li>
+
+</ul></li>
+
+</ul>
+
+</section>
+<section data-background="" data-background-repeat="t">
+<ul>
+<li>MacOS
+<ul>
+<li>The use of X11 requires <a href="https://www.xquartz.org/">XQuartz</a> to be installed</li>
+<li>Always re-install <code>XQuartz</code> when upgrading your OS X to a new major version</li>
+
+</ul></li>
+<li>Ubuntu
+<ul>
+<li><p>
+Add repository to <code>/etc/apt/sources.list</code>
+</p>
+<pre class="example">
+deb https://&lt;my.favorite.cran.mirror&gt;/bin/linux/ubuntu precise/
+</pre></li>
+
+<li><p>
+Install by
+</p>
+<div class="org-src-container">
+
+<pre><code class=" sh" >sudo apt-get update
+sudo apt-get install r-base
+</code></pre>
+</div></li>
+
+</ul></li>
+
+</ul>
+</section>
+<section id="slide-3-1-2" data-background="" data-background-repeat="t">
+<h4 id="3-1-2"><span class="section-number-4">3.1.2</span> RStudio</h4>
+<ul>
+<li>An integrated development environment (IDE) for <code>R</code></li>
+<li>Includes a <i>console</i>, syntax-highlighting <i>editor</i>, as well as <i>tools</i> for
+plotting, history, debugging and workspace management</li>
+<li>Available in open source and commercial editions</li>
+<li>Runs on the desktop (Windows, Mac, and Linux) or in a browser connected to
+RStudio Server</li>
+<li><a href="https://www.rstudio.com/">https://www.rstudio.com/</a></li>
+
+</ul>
+</section>
+<section id="slide-3-1-3" data-background="" data-background-repeat="t">
+<h4 id="3-1-3"><span class="section-number-4">3.1.3</span> More about RStudio</h4>
+<ul>
+<li>Preference
+<ul>
+<li>Appearance</li>
+<li>Pane Layout</li>
+
+</ul></li>
+<li>Autocomplete with tab
+<ul>
+<li>If you type tab RStudio will suggest functions, variable names, file
+names, etc.</li>
+
+</ul></li>
+<li>Run code with <code>CMD + Enter</code></li>
+<li>RStudio keybord shortcuts:
+<a href="https://support.rstudio.com/hc/en-us/articles/200711853-Keyboard-Shortcuts">https://support.rstudio.com/hc/en-us/articles/200711853-Keyboard-Shortcuts</a></li>
+<li><code>Promise</code> in Environment pane
+<ul>
+<li>A <code>promise</code> means the data or function will be there when you actually need it</li>
+<li><code>R</code> was told to load this set or function, but the set or function have not  actually been used anywhere</li>
+<li><code>R</code> didn’t feel the need to load it fully into memory</li>
+
+</ul></li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-3-2" data-background="" data-background-repeat="t">
+<h3 id="3-2"><span class="section-number-3">3.2</span> Start R</h3>
+<ul>
+<li>Without RStudio
+<ul>
+<li>Windows: Double-click on <code>R</code></li>
+<li>Mac OS X: Click on <code>R</code></li>
+<li>Unix: Type <code>R</code></li>
+
+</ul></li>
+<li>With RStudio
+<ul>
+<li>Windows: Double-click on <code>RStudio</code></li>
+<li>Mac OS X: Click on <code>RStudio</code></li>
+
+</ul></li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-3-3" data-background="" data-background-repeat="t">
+<h3 id="3-3"><span class="section-number-3">3.3</span> Working directory</h3>
+<ul>
+<li>Directory on your computer on which you are working</li>
+<li>Default location from which all files will be loaded and to which all files will be saved</li>
+<li><p>
+Get and set working directory
+</p>
+<div class="org-src-container">
+
+<pre><code class=" R" >getwd()
+setwd("~/Temp")
+</code></pre>
+</div></li>
+<li>In RStudio, go to <code>File</code> &gt; <code>More</code></li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-3-4" data-background="" data-background-repeat="t">
+<h3 id="3-4"><span class="section-number-3">3.4</span> Get help</h3>
+<ul>
+<li>There is an extensive built in help system</li>
+<li>Can be accessed from the tool bar or from the command line</li>
+
+</ul>
+</section>
+<section id="slide-3-4-1" data-background="" data-background-repeat="t">
+<h4 id="3-4-1"><span class="section-number-4">3.4.1</span> Examples</h4>
+<ul>
+<li><p>
+Open up the whole help system in .html format and look through the table
+of contents for your general topic by
+</p>
+<div class="org-src-container">
+
+<pre><code class=" R" >help.start()
+</code></pre>
+</div></li>
+<li><p>
+Search the help system for documentation matching a given character
+string by
+</p>
+<div class="org-src-container">
+
+<pre><code class=" R" >help.search("sort")
+??sort
+</code></pre>
+</div></li>
+<li><p>
+Returns a character vector giving the names of all objects in the search
+list matching a given character
+</p>
+<div class="org-src-container">
+
+<pre><code class=" R" >apropos("sort")
+</code></pre>
+</div></li>
+<li><p>
+Get help on specific functions by
+</p>
+<div class="org-src-container">
+
+<pre><code class=" R" >help(sort)
+?sort
+</code></pre>
+</div></li>
+
+</ul>
+</section>
+<section id="slide-3-4-2" data-background="" data-background-repeat="t">
+<h4 id="3-4-2"><span class="section-number-4">3.4.2</span> The anatomy of the R help file</h4>
+<ul>
+<li>There are several sections to an R help file
+<ul>
+<li><i>Description</i>: Briefly describes what the function does</li>
+<li><i>Usage</i>: Shows how the function is invoked, including all standard
+arguments list all inputs with a brief description of each</li>
+<li><i>Arguments Details</i>: Further details, if warranted</li>
+<li><i>Value</i>: Describes the output</li>
+<li><i>See Also</i>: Lists related functions that you might have meant to look up
+instead</li>
+<li><i>Examples</i>: Can cut and paste into R to demonstrate the function</li>
+
+</ul></li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-3-5" data-background="" data-background-repeat="t">
+<h3 id="3-5"><span class="section-number-3">3.5</span> Packages</h3>
+<ul>
+<li>The fundamental unit of shareable functions in <code>R</code> is <code>package</code></li>
+<li>A package integrates <i>code</i>, <i>data</i>, <i>documentation</i>, and <i>tests</i> for a
+group of functions and data</li>
+<li><a href="https://cran.r-project.org/">CRAN</a> is the public clearing house for <code>R</code> packages</li>
+
+</ul>
+</section>
+<section id="slide-3-5-1" data-background="" data-background-repeat="t">
+<h4 id="3-5-1"><span class="section-number-4">3.5.1</span> How to use packages?</h4>
+<ul>
+<li>Install a package by <i>install.packages("foo")</i></li>
+<li>Use a package by <i>library("foo")</i></li>
+<li>Get help on a package by <i>help(package = "foo")</i></li>
+<li>Show all demos in a package by <i>demo(package = "foo")</i></li>
+<li>Run a specific demo by <i>demo("topic", package = "foo")</i></li>
+<li>Check data in a package by <i>data(package = "foo")</i></li>
+<li>Load data from a package by <i>data(foo.data, package="foo")</i></li>
+<li>Show all vignettes by <i>vignette(package = "foo")</i></li>
+<li>Load a specific vignettes by <i>vignette("topic", package = "foo")</i></li>
+<li>Remove an installed package by <i>remove.packages(package = "foo")</i></li>
+<li>Detach a package by <i>detach("package:foo", unload=TRUE)</i></li>
+
+</ul>
+</section>
+<section id="slide-3-5-2" data-background="" data-background-repeat="t">
+<h4 id="3-5-2"><span class="section-number-4">3.5.2</span> Load data</h4>
+<ul>
+<li>In RStudio, when a data set in a package hasn't been accessed yet, it is
+shown as <code>&lt;Promise&gt;</code> in the <code>Environment</code> pane</li>
+
+</ul>
+</section>
+<section id="slide-3-5-3" data-background="" data-background-repeat="t">
+<h4 id="3-5-3"><span class="section-number-4">3.5.3</span> Example</h4>
+<ul>
+<li><code>beanz</code> is a package for Bayesian analysis of heterogeneous treatment
+effect.</li>
+<li>How much information can you find for <code>beanz</code>?</li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-3-6" data-background="" data-background-repeat="t">
+<h3 id="3-6"><span class="section-number-3">3.6</span> Global environment</h3>
+<ul>
+<li>All functions and variables defined in console are in the global
+environment</li>
+<li>Important functions
+<ul>
+<li><i>ls()</i>, <i>objects()</i>: list objects</li>
+<li><i>rm()</i>: remove objects</li>
+<li><i>sessionInfo()</i>: collect information about the current R session</li>
+<li><i>save.image()</i>: save entire environment</li>
+
+</ul></li>
+<li><p>
+Example
+</p>
+<div class="org-src-container">
+
+<pre><code class=" R" >ls();
+ls(pattern='x');
+
+xx &lt;- 1:5;
+ls(pattern='x');
+
+## remove a list of variables
+x &lt;- 1; y &lt;- 2; ls();
+rm('x','y'); ls();
+
+save.image(file="mydata.RData");
+load(file="mydata.RData");
+</code></pre>
+</div></li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-3-7" data-background="" data-background-repeat="t">
+<h3 id="3-7"><span class="section-number-3">3.7</span> Command history</h3>
+<ul>
+<li>Function <code>history()</code>  will get all the previous commands</li>
+<li>Select commands containing a specific phrase with the pattern variable
+(e.g., history(pattern="save"))</li>
+<li>Type the <i>up arrow</i> in <code>R</code> console to get the previous command</li>
+<li><p>
+History of all commands run in the session can be saved and loaded later
+</p>
+<div class="org-src-container">
+
+<pre><code class=" R" >savehistory(file='SavedHistory.Rhistory')
+loadhistory(file='SavedHistory.Rhistory')
+</code></pre>
+</div></li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-3-8" data-background="" data-background-repeat="t">
+<h3 id="3-8"><span class="section-number-3">3.8</span> Quit R</h3>
+<ul>
+<li><p>
+Quit R by
+</p>
+<div class="org-src-container">
+
+<pre><code class=" R" >q()
+quit()
+</code></pre>
+</div></li>
+<li>R may ask <code>Save workspace image? [y/n/c]:</code>
+<ul>
+<li><i>y</i>: Will save a file .RData and .Rhistory with the commands from your
+workspace into your working directory before exiting. R will
+automatically restore your workspace from these files if you open R from
+this directory</li>
+<li><i>n</i>: Will exit R without saving any files</li>
+<li><i>c</i>: Will cancel the quit command</li>
+
+</ul></li>
+
+</ul>
+</section>
+</section>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/reveal.js/3.0.0/lib/js/head.min.js"></script>
+<script src="https://cdn.jsdelivr.net/reveal.js/3.0.0/js/reveal.js"></script>
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+
+controls: true,
+progress: true,
+history: false,
+center: true,
+slideNumber: 'c/t',
+rollingLinks: true,
+keyboard: true,
+mouseWheel: false,
+fragmentInURL: false,
+hashOneBasedIndex: false,
+pdfSeparateFragments: true,
+
+overview: true,
+margin: 0.10,
+
+theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+transition: Reveal.getQueryHash().transition || 'convex', // see README of reveal.js for options
+transitionSpeed: 'default',
+
+// Optional libraries used to extend reveal.js
+dependencies: [
+ { src: 'https://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: 'https://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: 'https://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }]
+
+});
+</script>
+</body>
+</html>

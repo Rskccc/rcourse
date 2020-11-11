@@ -1,0 +1,335 @@
+#+TITLE: Statistics and Data Analysis Using R
+#+DATE:  Fall, 2020
+#+AUTHOR: Department of Oncology, JHU SOM
+#+Email: cwang68@jhmi.edu
+
+#+OPTIONS: toc:nil H:3 num:t tags:nil
+#+STARTUP: nohideblocks
+#+SELECT_TAGS:
+#+EXCLUDE_TAGS:
+#+PROPERTY: header-args:R :session *Ro* :results output :exports both :eval yes :tangle yes
+
+# #---- reveal export-----
+# # F to enter full screen; ESC to see the overview
+# #---- themes -----------
+# #Black (default) - White - League - Sky - Beige - Simple - Serif - Blood -
+# #Night - Moon - Solarized
+# #---- transition -------
+# #None - Fade - Slide - Convex - Concave - Zoom
+
+#+OPTIONS: reveal_center:t reveal_rolling_links:t reveal_control:f reveal_slide_number:c/t
+#+REVEAL_HLEVEL: 2
+#+REVEAL_THEME: serif
+#+REVEAL_TRANS: convex
+#+REVEAL_MARGIN: 0.1
+#+REVEAL_DEFAULT_FRAG_STYLE: fade-in
+#+REVEAL_TITLE_SLIDE_BACKGROUND: ./images/Rlogo2.png
+#+REVEAL_DEFAULT_SLIDE_BACKGROUND:
+#+REVEAL_DEFAULT_SLIDE_BACKGROUND_REPEAT: t
+#+REVEAL_PLUGINS: (markdown highlight)
+#+REVEAL_HIGHLIGHT: tango
+# #+REVEAL_HIGHLIGHT_CSS:
+#+REVEAL_EXTRA_CSS: ./presentation.css
+#+REVEAL_ROOT: https://cdn.jsdelivr.net/reveal.js/3.0.0/
+
+# #---- latex export-----
+#+LATEX_HEADER: \input{latex_header}
+#+LATEX_CLASS_OPTIONS: [presentation, seagull]
+#+BEAMER_THEME: default
+
+# #+TOC: headlines 4
+* Introduction
+** Instructors
+   - Leslie Cope, PhD (cope@jhu.edu)
+   - Chenguang Wang, PhD (/cwang68@jhmi.edu/)
+   - Rossin Erbe (rerbe1@jhmi.edu)
+** Class
+   - Tell us
+     1. Who you are
+     3. Why you are taking this course
+** Syllabus
+   - History
+   - Course content
+   - Videos, lectures, exercises
+** Final Project
+   - https://rskccc.github.io/rbook/
+   - Milestones
+     - Nov 20: Formulate groups, decide on projects
+     - Dec 9, 11: Meet with the instructors, preview the project
+** Course evaluation
+   - Graded on a Pass/Fail basis
+   - Depends on attendance at the majority of classes and final project
+* What is =R=?
+  :PROPERTIES:
+  :reveal_background: ./images/Rlogo2.png
+  :END:
+** History of /R/
+   - =R= is an outgrowth of the =S= language and environment
+   - =S= is a high level language and an internal statistical environment for
+     data analysis and graphics
+   - =S= was developed for Bell Labs in 1976 under the leadership of [[https://statistics.stanford.edu/people/john-chambers][John Chambers]]
+     #+BEGIN_QUOTE
+     to turn ideas into software quickly and faithfully
+     #+END_QUOTE
+
+   #+REVEAL: split
+   - =S-PLUS= and =R= are two =S= dialects
+   - =S-PLUS= is a /commercial/ implementation of the =S=
+   - =R= is also known as /GNU S/
+   - Most =S= code will run without modification in =R=
+   - =S-Plus= offers a sophisticated graphical user interface, =R= does not
+   - Standard data files for =S= and =R= are not compatible
+   - Graphical output differs
+
+   #+REVEAL: split
+   - =R= started in the early 1990’s as a project by [[https://en.wikipedia.org/wiki/Ross_Ihaka][Ross Ihaka]] and [[https://en.wikipedia.org/wiki/Robert_Gentleman_(statistician)][Robert
+     Gentleman]] at the University of Auckland, New Zealand, intended to provide a
+     statistical environment in their teaching lab
+   - =R= is a language and environment for statistical computing and graphics
+   - =R= provides an Open Source route to participation in research in statistical
+     methodology
+   - Most user-visible functions are written in =R= itself
+   - It is possible to develop =R= procedures written in other languages (C,
+     C++, or FORTRAN)
+   - System commands can be called from within =R=
+** Why /R/?
+   - =R= is a free and powerful tool for statistical analyses
+   - =R= compiles and runs on a wide variety of UNIX platforms and similar
+     systems (including FreeBSD and Linux), Windows and MacOS
+   - Open-source code, well curated and error checked through a wide and active
+     user community
+   - =R= provides a wide variety of statistical techniques including linear and
+     nonlinear modelling, classical statistical tests, time-series analysis,
+     genomics, and many more
+   - =R= is highly extensible
+   - =R= produces well-designed publication-quality plots, including mathematical
+     symbols and formulae where needed
+*** R environment
+    - data handling and storage
+    - computations on different types
+    - large collections of statistical analysis tools
+    - graphical support
+    - programming language
+*** Bioconductor
+   - A particular R strength is genomics research
+   - Bioconductor
+     - A suite of =R= packages dedicated to genomic data analysis,
+       visualization and management
+     - Facilitates biological metadata integration (e.g.,Gene Ontology, PubMed)
+       in the analysis of experimental data
+     - New methods are quickly implemented in =R= and made available via
+       Bioconductor
+     - The undeclared /standard/ in literature
+     - https://www.bioconductor.org/
+** Why not /R/?
+   - =R= is accused of being slow, memory-hungry, and unable to handle large
+     data sets
+   - =R= has no GUI and no commercial service
+     - Error messages can be cryptic
+     - Documentation is controlled by the code developer and may be difficult to
+       follow
+   - Regulatory guidelines (e.g. 21 CFR 11) require tedious effort to validate
+     and verify things. A large proportion of =R= packages and applications are
+     lack of such documentation
+** Resources
+   - /CRAN/: The Comprehensive R Archive Network
+     - https://cran.r-project.org/
+     - A network of ftp and web servers that store identical,
+       up-to-date, versions of code and documentation for R
+     - Mirror list on https://cran.r-project.org/mirrors.html
+   - /GOOGLE/
+   - /RSeek/
+     - An R-specific, Google powered search engine
+     - http://www.rseek.org/
+
+   #+REVEAL: split
+
+   - Active community mailing lists
+     - http://www.r-project.org/mail.html
+       - R-announce: A moderated list for major announcements about the
+         development of R and the availability of new code.
+       - R-packages: A moderated list for announcements on the availability of
+         new or enhanced contributed packages.
+       - /R-help/: The main R mailing list, for discussion about problems and
+         solutions using R, announcements (not covered by ‘R-announce’ and
+         ‘R-packages’) about the development of R and the availability of new
+         code
+       - R-devel: This list is for questions and discussion about code development in R.
+       - R-package-devel: A list which which provides a forum for learning about
+         the R package development process.
+     - Follow the [[https://www.r-project.org/posting-guide.html][posting guidelines]]
+     - Do not be discouraged!!! A helpful response will usually come along
+* Getting Started with R
+  :PROPERTIES:
+  :reveal_background: ./images/Rlogo2.png
+  :END:
+** Installation
+   - R
+   - RStudio
+*** R
+    - https://cran.r-project.org/
+    - Subdirectories
+      - /base/: base distribution that provides the base package which is
+        required to run R and contains the most fundamental functions
+      - /contrib/: Contributed CRAN packages
+      - /Rtools/: Tools to build =R= and =R= packages
+
+    #+REVEAL: split
+    - MacOS
+      - The use of X11 requires [[https://www.xquartz.org/][XQuartz]] to be installed
+      - Always re-install =XQuartz= when upgrading your OS X to a new major version
+    - Ubuntu
+      - Add repository to =/etc/apt/sources.list=
+        #+BEGIN_EXAMPLE
+        deb https://<my.favorite.cran.mirror>/bin/linux/ubuntu precise/
+        #+END_EXAMPLE
+
+      - Install by
+        #+BEGIN_SRC sh
+        sudo apt-get update
+        sudo apt-get install r-base
+        #+END_SRC
+*** RStudio
+    - An integrated development environment (IDE) for =R=
+    - Includes a /console/, syntax-highlighting /editor/, as well as /tools/ for
+      plotting, history, debugging and workspace management
+    - Available in open source and commercial editions
+    - Runs on the desktop (Windows, Mac, and Linux) or in a browser connected to
+      RStudio Server
+    - https://www.rstudio.com/
+*** More about RStudio                                             :noexport:
+    - Preference
+      - Appearance
+      - Pane Layout
+    - Autocomplete with tab
+      - If you type tab RStudio will suggest functions, variable names, file
+        names, etc.
+    - Run code with =CMD + Enter=
+    - RStudio keybord shortcuts:
+      https://support.rstudio.com/hc/en-us/articles/200711853-Keyboard-Shortcuts
+    - =Promise= in Environment pane
+      - A =promise= means the data or function will be there when you actually need it
+      - =R= was told to load this set or function, but the set or function have not  actually been used anywhere
+      - =R= didn’t feel the need to load it fully into memory
+** Start R
+   - Without RStudio
+     - Windows: Double-click on =R=
+     - Mac OS X: Click on =R=
+     - Unix: Type =R=
+   - With RStudio
+     - Windows: Double-click on =RStudio=
+     - Mac OS X: Click on =RStudio=
+** Working directory
+   - Directory on your computer on which you are working
+   - Default location from which all files will be loaded and to which all files will be saved
+   - Get and set working directory
+     #+BEGIN_SRC R :eval no
+     getwd()
+     setwd("~/Temp")
+     #+END_SRC
+   - In RStudio, go to =File= > =More=
+** Get help
+   - There is an extensive built in help system
+   - Can be accessed from the tool bar or from the command line
+*** Examples
+    - Open up the whole help system in .html format and look through the table
+      of contents for your general topic by
+      #+BEGIN_SRC R :eval no
+      help.start()
+      #+END_SRC
+    - Search the help system for documentation matching a given character
+      string by
+      #+BEGIN_SRC R :eval no
+      help.search("sort")
+      ??sort
+      #+END_SRC
+    - Returns a character vector giving the names of all objects in the search
+      list matching a given character
+      #+BEGIN_SRC R :eval no
+      apropos("sort")
+      #+END_SRC
+    - Get help on specific functions by
+      #+BEGIN_SRC R :eval no
+      help(sort)
+      ?sort
+      #+END_SRC
+*** The anatomy of the R help file
+    - There are several sections to an R help file
+      - /Description/: Briefly describes what the function does
+      - /Usage/: Shows how the function is invoked, including all standard
+        arguments list all inputs with a brief description of each
+      - /Arguments Details/: Further details, if warranted
+      - /Value/: Describes the output
+      - /See Also/: Lists related functions that you might have meant to look up
+        instead
+      - /Examples/: Can cut and paste into R to demonstrate the function
+** Packages
+   - The fundamental unit of shareable functions in =R= is =package=
+   - A package integrates /code/, /data/, /documentation/, and /tests/ for a
+     group of functions and data
+   - [[https://cran.r-project.org/][CRAN]] is the public clearing house for =R= packages
+*** How to use packages?
+     - Install a package by /install.packages("foo")/
+     - Use a package by /library("foo")/
+     - Get help on a package by /help(package = "foo")/
+     - Show all demos in a package by /demo(package = "foo")/
+     - Run a specific demo by /demo("topic", package = "foo")/
+     - Check data in a package by /data(package = "foo")/
+     - Load data from a package by /data(foo.data, package="foo")/
+     - Show all vignettes by /vignette(package = "foo")/
+     - Load a specific vignettes by /vignette("topic", package = "foo")/
+     - Remove an installed package by /remove.packages(package = "foo")/
+     - Detach a package by /detach("package:foo", unload=TRUE)/
+*** Load data
+     - In RStudio, when a data set in a package hasn't been accessed yet, it is
+       shown as =<Promise>= in the =Environment= pane
+*** Example
+    - =beanz= is a package for Bayesian analysis of heterogeneous treatment
+      effect.
+    - How much information can you find for =beanz=?
+** Global environment
+   - All functions and variables defined in console are in the global
+     environment
+   - Important functions
+     - /ls()/, /objects()/: list objects
+     - /rm()/: remove objects
+     - /sessionInfo()/: collect information about the current R session
+     - /save.image()/: save entire environment
+   - Example
+     #+BEGIN_SRC R :eval no
+     ls();
+     ls(pattern='x');
+
+     xx <- 1:5;
+     ls(pattern='x');
+
+     ## remove a list of variables
+     x <- 1; y <- 2; ls();
+     rm('x','y'); ls();
+
+     save.image(file="mydata.RData");
+     load(file="mydata.RData");
+     #+END_SRC
+** Command history
+   - Function =history()=  will get all the previous commands
+   - Select commands containing a specific phrase with the pattern variable
+     (e.g., history(pattern="save"))
+   - Type the /up arrow/ in =R= console to get the previous command
+   - History of all commands run in the session can be saved and loaded later
+     #+BEGIN_SRC R :eval no
+     savehistory(file='SavedHistory.Rhistory')
+     loadhistory(file='SavedHistory.Rhistory')
+     #+END_SRC
+** Quit R
+   - Quit R by
+     #+BEGIN_SRC R :eval no
+     q()
+     quit()
+     #+END_SRC
+   - R may ask =Save workspace image? [y/n/c]:=
+     - /y/: Will save a file .RData and .Rhistory with the commands from your
+       workspace into your working directory before exiting. R will
+       automatically restore your workspace from these files if you open R from
+       this directory
+     - /n/: Will exit R without saving any files
+     - /c/: Will cancel the quit command
